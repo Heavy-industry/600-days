@@ -9,16 +9,35 @@
             background: #FFC0CB; /* 浅粉色 */
             color: white;
             font-family: "楷体", serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             text-align: center;
-            padding-top: 15%;
+            margin: 0;
+        }
+        h1 {
+            margin-bottom: 20px;
         }
         #text {
-            font-size: 24px;
+            font-size: 2vw;
             width: 60%;
-            margin: 0 auto;
             white-space: pre-wrap;
             border-right: 2px solid white;
             overflow: hidden;
+            display: inline-block;
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        #text::after {
+            content: "";
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: white;
+            animation: blink 0.8s infinite;
         }
     </style>
 </head>
@@ -27,18 +46,21 @@
     <div id="text"></div>
 
     <script>
-        const text = `✨✨600天纪念日快乐！！！🎉🎉🎉（转圈！撒花！敲锣打鼓！🎊），
-        600天啦！！！这不仅仅是一个数字，而是600个闪闪发光的日子，是600次日升月落的温柔陪伴，是600种独一无二的美好瞬间✨💖～
-        愿接下来的每一天，都能像今天一样充满仪式感和快乐感！愿未来的日子里，每一个小小的瞬间都被珍藏，每一次努力都开花结果，每一份热爱都能被世界温柔以待！！💫💫💫
-        祝我们的600天，也祝未来的每一天，都无限美好！！！🎊🥳🎂🚀
-        爱你的姜姜💖
-        `;
+        const text = `✨✨600天纪念日快乐！！！🎉🎉🎉（转圈！撒花！敲锣打鼓！🎊）
+600天啦！！！这不仅仅是一个数字，而是600个闪闪发光的日子，
+是600次日升月落的温柔陪伴，是600种独一无二的美好瞬间✨💖～
+愿接下来的每一天，都能像今天一样充满仪式感和快乐感！
+愿未来的日子里，每一个小小的瞬间都被珍藏，每一次努力都开花结果，
+每一份热爱都能被世界温柔以待！！💫💫💫
+祝我们的600天，也祝未来的每一天，都无限美好！！！🎊🥳🎂🚀
+爱你的姜姜💖`;
+
         let index = 0;
         function typeWriter() {
             if (index < text.length) {
-                document.getElementById("text").innerHTML += text.charAt(index);
+                document.getElementById("text").textContent += text.charAt(index);
                 index++;
-                setTimeout(typeWriter, 100); // 控制打字速度
+                setTimeout(typeWriter, 80); // 适当加快打字速度
             }
         }
         window.onload = typeWriter;
